@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 		printw("Percent correct: %.1f",
 				(correct / (double)total_attempts) * 100);
 
-		move(6,0);
+		move(7,0);
 		printw("Is the square (b)lack or (w)hite:");
 		move(7, 34);
 		printw(square_names[r]);
