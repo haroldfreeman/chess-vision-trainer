@@ -13,3 +13,8 @@ EXTRA_DIST = doc/chess-vision-trainer.1
 format:
 	find ./ -type f -name '*.[ch]' -exec $(INDENT) '{}' \
 		-kr -ci4 -cli4 -i4 -l79 -nut \;
+
+# Remove all the autotools files
+.PHONY: git-clean
+git-clean:
+	git clean -xdf
