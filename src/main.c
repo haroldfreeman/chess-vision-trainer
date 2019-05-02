@@ -16,7 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <signal.h>
 #include <ncurses.h>
 #include <unistd.h>
 #include <time.h>
@@ -69,37 +68,40 @@ int main(int argc, char *argv[]) {
         clear();
 		// Select square
 		int r = rand() % 64;
+
 		move(0,0);
 		printw("Chess Vision Trainer");
 		move(1,0);
 		printw("--------------------");
-
 		move(2,0);
-		printw("Correct: %d", correct);
+		printw("Press 'q' to quit.");
+
 		move(3,0);
-		printw("Total attempts: %d", total_attempts);
+		printw("Correct: %d", correct);
 		move(4,0);
+		printw("Total attempts: %d", total_attempts);
+		move(5,0);
 		printw("Percent correct: %.1f",
 				(correct / (double)total_attempts) * 100);
 
 		move(6,0);
 		printw("Is the square (b)lack or (w)hite:");
-		move(6, 34);
+		move(7, 34);
 		printw(square_names[r]);
 
 		// Get the selection
         int ch = getch();
         switch (ch) {
-            case KEY_BACKSPACE: /* user pressed backspace */
-                running = 0;
+            case 'q': // Quit
+                running = false;
                 break;
-			case 'w':
+			case 'w': // White
 				total_attempts++;
 				if (square_colors[r] == 'w') {
 					correct++;
 				}
 				break;
-			case 'b':
+			case 'b': // Black
 				total_attempts++;
 				if (square_colors[r] == 'b') {
 					correct++;
@@ -109,5 +111,6 @@ int main(int argc, char *argv[]) {
         refresh();
     }
 
+    // Must call to end ncurses
     endwin();
 }
