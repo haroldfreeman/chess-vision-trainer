@@ -1,8 +1,8 @@
 ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = subdir-objects
 bin_PROGRAMS = chess-vision-trainer
-edcount_SOURCES = \
-	src/main.c \
+chess_vision_trainer_SOURCES = \
+	src/main.c
 
 # Manual file
 man_MANS = doc/chess-vision-trainer.1

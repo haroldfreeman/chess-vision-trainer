@@ -15,7 +15,7 @@ AC_PROG_MAKE_SET
 #AC_PROG_LIBTOOL
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdint.h stdlib.h string.h stdbool.h stdio.h math.h signal.h
+AC_CHECK_HEADERS([stdint.h stdlib.h string.h stdbool.h stdio.h math.h signal.h \
 				  ncurses.h unistd.h], [], [
                   AC_MSG_ERROR([Missing header file])
                   ])
@@ -23,6 +23,11 @@ AC_CHECK_HEADERS([stdint.h stdlib.h string.h stdbool.h stdio.h math.h signal.h
 # Checks for libraries.
 AC_SEARCH_LIBS([sqrt], [m], [], [
                   AC_MSG_ERROR([required library math not found])
+                  ])
+
+# Checks for libraries.
+AC_SEARCH_LIBS([initscr], [ncurses], [], [
+                  AC_MSG_ERROR([required library nucurses not found])
                   ])
 
 # Checks for library functions.

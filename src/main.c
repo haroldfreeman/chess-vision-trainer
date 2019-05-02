@@ -23,10 +23,6 @@
 void* resizeHandler(int);
 
 int main(int argc, char *argv[]) {
-    int max_y = 0, max_x = 0;
-
-    signal(SIGWINCH, resizeHandler);
-
     // Setup ncurses
     initscr();
     // One character at a time
@@ -38,30 +34,20 @@ int main(int argc, char *argv[]) {
     // Capture special keys
     keypad(stdscr, TRUE);
 
-    // Global var `stdscr` is created by the call to `initscr()`
-    getmaxyx(stdscr, max_y, max_x);
-
     int running = 1;
 
     while(running) {
         clear();
-        // Get current window x/y
-        getmaxyx(stdscr, max_y, max_x);
         int ch = getch();
         switch (ch) {
             case KEY_BACKSPACE: /* user pressed backspace */
                 running = 0;
                 break;
             default:
-                mvprintw(1, 1, ch);
+                mvaddch(1, 1, ch);
         }
         refresh();
     }
 
     endwin();
-}
-
-void* resizeHandler(int sig) {
-    int nh, nw;
-    getmaxyx(stdscr, nh, nw);
 }
